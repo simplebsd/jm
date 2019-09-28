@@ -2,7 +2,6 @@ ext_if=$$(netstat -r | grep default | awk '{print $$4}')
 jail_if=lo1
 
 install:
-	make deinstall
 	zfs create -o mountpoint=/usr/local/jails zroot/jails || true
 	zfs create zroot/jails/basejail || true
 	fetch https://download.freebsd.org/ftp/releases/amd64/12.0-RELEASE/base.txz -o /tmp
