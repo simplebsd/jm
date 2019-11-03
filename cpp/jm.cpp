@@ -8,6 +8,8 @@
 #include "start.cpp"
 #include "stop.cpp"
 #include "exec.cpp"
+#include "remove.cpp"
+#include "update.cpp"
 using namespace std;
 
 char *param1, *param2;
@@ -30,6 +32,7 @@ int main(int argc, char *argv[]) {
 		cout << "\trestart \033[4mjail name\033[24m\t Restart jail.\n\n";
 		cout << "\texec \033[4mjail name\033[24m\t Shell access to the jail.\n\n";
 		cout << "\trm \033[4mjail name\033[24m\t Remove jail.\n\n";
+		cout << "\tupdate\t Update jm programm.\n\n";
 
 	}
 
@@ -43,7 +46,8 @@ int main(int argc, char *argv[]) {
 			start(param1);
 		}
 		else if(!strcmp(argv[1], "exec") && !strcmp(argv[2], param1)) exec(param1);
-    	else if(!strcmp(argv[1], "rm") && !strcmp(argv[2], param1)) remove(param1);
+    	        else if(!strcmp(argv[1], "rm") && !strcmp(argv[2], param1)) remove(param1);
+		else if(!strcmp(argv[1], "update")) update();
 
 		else {
 			cout << "\n";

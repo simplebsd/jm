@@ -1,24 +1,32 @@
 #include <iostream>
-#include <stdlib.h>
-#include <stdio.h>
 #include <fstream>
 #include <string>
+#include <stdlib.h>
 using namespace std;
 
-//void remove(char *param1) {
-int main() {
-    char jcom[100], delline[100];
-    char param1[100] = "git {";
-    string line;
+void remove(char *param1) {
+    string line, delline;
+    size_t pos;
+    char jcom[100];
 
-//    sprintf(jcom, "zfs - destroy -r zroot/jails/%s", param1);
-//    system(jcom);
-    ifstream jconf("~/jail.conf;");
-    ofstream temp_jconf("~/jail_temp.conf");
-    sprintf(delline, "%s {", param1);
-    while(getline(jconf, line)) {
-        if(line != delline) {
-            temp_jconf << line << endl;
+    delline = param1;
+
+    ifstream jconfr("/etc/jail.conf");
+    ofstream jconfw("/etc/jail_temp.conf");
+
+    while(getline(jconfr, line)) {
+        pos = line.find("# jm_" + delline);
+
+        if(pos == string::npos) {
+            jconfw << line << endl;
         }
     }
+
+    jconfr.close();
+    jconfw.close();
+    remove("/etc/jail.conf");
+    rename("/etc/jail_temp.conf", "/etc/jail.conf");
+
+    sprintf(jcom, "zfs destroy -r zroot/jails/%s", param1);
+    system(jcom);
 }
