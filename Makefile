@@ -4,8 +4,8 @@ jail_if=lo1
 install:
 	zfs create -o mountpoint=/usr/local/jails zroot/jails || true
 	zfs create zroot/jails/basejail || true
-	fetch https://download.freebsd.org/ftp/releases/amd64/12.0-RELEASE/base.txz -o /tmp
-	fetch https://download.freebsd.org/ftp/releases/amd64/12.0-RELEASE/lib32.txz -o /tmp
+	fetch https://download.freebsd.org/ftp/releases/amd64/12.1-RELEASE/base.txz -o /tmp
+	fetch https://download.freebsd.org/ftp/releases/amd64/12.1-RELEASE/lib32.txz -o /tmp
 	tar xvf /tmp/base.txz -C /usr/local/jails/basejail
 	tar xvf /tmp/lib32.txz -C /usr/local/jails/basejail
 	env PAGER=cat freebsd-update -b /usr/local/jails/basejail fetch install
