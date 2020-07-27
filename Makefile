@@ -49,9 +49,9 @@ deinstall:
 	service jail stop
 	sysrc -x jail_enable
 	rm /etc/jail.conf || true
-	zfs destroy -R -f zroot/jails/basejail@12.0-RELEASE || true
-	zfs destroy -f zroot/jails/basejail || true
-	zfs destroy -f zroot/jails || true
+#	zfs destroy -R -f zroot/jails/basejail@12.0-RELEASE || true
+#	zfs destroy -f zroot/jails/basejail || true
+#	zfs destroy -f zroot/jails || true
 	sed -i '' '/# Nat/d' /etc/pf.conf
 	sed -i '' '/jail_net/d' /etc/pf.conf
 	sed -i '' '/jail_if/d' /etc/pf.conf
