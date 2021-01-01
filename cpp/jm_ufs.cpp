@@ -3,12 +3,12 @@
 #include <string>
 #include <stdlib.h>
 #include <cstring>
-#include "build.cpp"
+#include "build_ufs.cpp"
 #include "list.cpp"
 #include "start.cpp"
 #include "stop.cpp"
 #include "exec.cpp"
-#include "remove.cpp"
+#include "remove_ufs.cpp"
 #include "update.cpp"
 using namespace std;
 

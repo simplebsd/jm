@@ -45,7 +45,7 @@ install:
 	ifconfig lo1 alias 10.0.1.1 netmask 255.255.255.0
 	service netif restart && service routing restart
 	service pf restart
-	clang++ cpp/jm.cpp -o /usr/local/bin/jm
+	clang++ cpp/jm_ufs.cpp -o /usr/local/bin/jm
 
 deinstall:
 	service jail stop
