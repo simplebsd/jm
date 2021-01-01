@@ -12,7 +12,7 @@ install:
 	echo 'nameserver 8.8.8.8' > /usr/local/jails/basejail/etc/resolv.conf
 	echo 'sshd_enable="YES"' > /usr/local/jails/basejail/etc/rc.conf
 	echo 'PermitRootLogin yes' >> /usr/local/jails/basejail/etc/ssh/sshd_config
-	zfs snapshot zroot/jails/basejail@12.0-RELEASE || true
+	zfs snapshot zroot/jails/basejail@12.1-RELEASE || true
 	echo 'exec.start = "/bin/sh /etc/rc";' > /etc/jail.conf
 	echo 'exec.stop = "/bin/sh /etc/rc.shutdown";' >> /etc/jail.conf
 	echo 'exec.clean;' >> /etc/jail.conf
@@ -49,7 +49,7 @@ deinstall:
 	service jail stop
 	sysrc -x jail_enable
 	rm /etc/jail.conf || true
-#	zfs destroy -R -f zroot/jails/basejail@12.0-RELEASE || true
+#	zfs destroy -R -f zroot/jails/basejail@12.1-RELEASE || true
 #	zfs destroy -f zroot/jails/basejail || true
 #	zfs destroy -f zroot/jails || true
 	sed -i '' '/# Nat/d' /etc/pf.conf
