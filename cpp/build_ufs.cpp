@@ -41,7 +41,7 @@ void build() {
 
         else {
 //            sprintf(jcom, "zfs clone zroot/jails/basejail@12.0-RELEASE zroot/jails/%s", jname.substr(7).c_str());
-            sprintf(jcom, "cp -r /usr/local/jails/basejail /usr/local/jails/%s", jname.substr(7).c_str());
+            sprintf(jcom, "cp -rf /usr/local/jails/basejail /usr/local/jails/%s", jname.substr(7).c_str());
             system(jcom);
 
             sprintf(jadd, "%s { # jm_%s\n  host.hostname = \"%s\"; # jm_%s\n  interface = \"lo1\"; # jm_%s\n  ip4.addr = %s; # jm_%s\n} # jm_%s\n\n", jname.substr(7).c_str() , jname.substr(7).c_str(), jhostname.substr(11).c_str(), jname.substr(7).c_str(), jname.substr(7).c_str(), jipv4.substr(7).c_str(), jname.substr(7).c_str(), jname.substr(7).c_str());
