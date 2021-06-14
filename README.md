@@ -17,7 +17,7 @@ Installation:
 2. Build jm:
 ```
   make install
-```
+```\
 
 Unninstall:
 
