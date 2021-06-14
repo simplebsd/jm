@@ -21,7 +21,7 @@
 
 <br/><br/>
 
-### Unninstall:
+### Uninstall:
 ```
 # make deinstall
 ```
