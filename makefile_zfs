@@ -4,15 +4,15 @@ jail_if=lo1
 install:
 	zfs create -o mountpoint=/usr/local/jails zroot/jails || true
 	zfs create zroot/jails/basejail || true
-	fetch https://download.freebsd.org/ftp/releases/amd64/12.1-RELEASE/base.txz -o /tmp
-	fetch https://download.freebsd.org/ftp/releases/amd64/12.1-RELEASE/lib32.txz -o /tmp
+	fetch https://download.freebsd.org/ftp/releases/amd64/`cat release_version.txt`-RELEASE/base.txz -o /tmp
+	fetch https://download.freebsd.org/ftp/releases/amd64/`cat release_version.txt`-RELEASE/lib32.txz -o /tmp
 	tar xvf /tmp/base.txz -C /usr/local/jails/basejail
 	tar xvf /tmp/lib32.txz -C /usr/local/jails/basejail
 	env PAGER=cat freebsd-update -b /usr/local/jails/basejail fetch install
 	echo 'nameserver 8.8.8.8' > /usr/local/jails/basejail/etc/resolv.conf
 	echo 'sshd_enable="YES"' > /usr/local/jails/basejail/etc/rc.conf
 	echo 'PermitRootLogin yes' >> /usr/local/jails/basejail/etc/ssh/sshd_config
-	zfs snapshot zroot/jails/basejail@12.1-RELEASE || true
+	zfs snapshot zroot/jails/basejail@`cat release_version.txt`-RELEASE || true
 	echo 'exec.start = "/bin/sh /etc/rc";' > /etc/jail.conf
 	echo 'exec.stop = "/bin/sh /etc/rc.shutdown";' >> /etc/jail.conf
 	echo 'exec.clean;' >> /etc/jail.conf
@@ -43,13 +43,14 @@ install:
 	ifconfig lo1 alias 10.0.0.1 netmask 255.255.255.0
 	service netif restart && service routing restart
 	service pf restart
+	sed -i "" "s/rel_ver/`cat release_version.txt`/g" cpp/build_zfs.cpp
 	clang++ cpp/jm_zfs.cpp -o /usr/local/bin/jm
 
 deinstall:
 	service jail stop
 	sysrc -x jail_enable
 	rm /etc/jail.conf || true
-#	zfs destroy -R -f zroot/jails/basejail@12.1-RELEASE || true
+#	zfs destroy -R -f zroot/jails/basejail@`cat release_version.txt`-RELEASE || true
 #	zfs destroy -f zroot/jails/basejail || true
 #	zfs destroy -f zroot/jails || true
 	sed -i '' '/# Nat/d' /etc/pf.conf

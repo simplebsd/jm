@@ -40,7 +40,7 @@ void build() {
         }
 
         else {
-//            sprintf(jcom, "zfs clone zroot/jails/basejail@12.0-RELEASE zroot/jails/%s", jname.substr(7).c_str());
+//            sprintf(jcom, "zfs clone zroot/jails/basejail@rel_ver-RELEASE zroot/jails/%s", jname.substr(7).c_str());
             sprintf(jcom, "cp -rf /usr/local/jails/basejail /usr/local/jails/%s", jname.substr(7).c_str());
             system(jcom);
 
