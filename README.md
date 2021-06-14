@@ -16,11 +16,12 @@
 ```
 2. Build jm:
 ```
-  make install
+# make install
 ```
 
 <br/><br/>
 
-## Unninstall:
-
-make deinstall
+### Unninstall:
+```
+# make deinstall
+```
