@@ -5,10 +5,19 @@
 
 
 Installation:
-
-make install
-
-<br/><br/>
+1. Set FreeBSD release version in file release_version.txt, for example:
+```
+# cat release_version.txt
+12.2
+```
+2. Choose zfs or ufs filesystem:
+```
+# cp makefile_zfs Makefile
+```
+2. Build jm:
+```
+  make install
+```
 
 Unninstall:
 
